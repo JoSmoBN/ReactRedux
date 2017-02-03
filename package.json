@@ -40,6 +40,6 @@
     "nyc": "^6.0.0",
     "react-addons-test-utils": "^0.14.7",
     "sinon": "^1.17.3",
-    "webpack": "^1.12.13"
+    "webpack": "^2.1.0"
   }
 }
