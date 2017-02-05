@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 
 // WITHOUT JSX
 
@@ -15,9 +15,9 @@ import React from 'react'
 //   }
 // })
 
-//JSX
+// JSX
 
-var MyTitle = React.createClass({
+/* var MyTitle = React.createClass({
   render: function () {
     const style = { color: this.props.color }
     return (
@@ -30,4 +30,4 @@ var MyTitle = React.createClass({
   }
 })
 
-export default MyTitle
+export default MyTitle */
