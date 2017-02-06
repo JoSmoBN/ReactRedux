@@ -3,29 +3,36 @@ const path = require('path')
 module.exports = {
   context: __dirname,
   entry: './js/ClientApp.js',
-  devtool: 'eval',
+  devtool: 'cheap-module-source-map',
   output: {
     path: path.join(__dirname, '/public'),
+    publicPath: '/public/',
     filename: 'bundle.js'
   },
-  devServer: {
-    publicPath: '/public/',
-    port: 3030
-  },
   resolve: {
-    extensions: ['.js', '.json']
+    // alias: {
+    //   react: 'preact-compat',
+    //   'react-dom': 'preact-compat'
+    // },
+    extensions: ['.js', '.jsx', '.json']
   },
   stats: {
     colors: true,
     reasons: true,
-    chunks: true
+    chunks: false
+  },
+  devServer: {
+    publicPath: '/public/',
+    historyApiFallback: true,
+    port: 3030
   },
   module: {
     rules: [
       {
-        include: path.resolve(__dirname, 'js'),
+        enforce: "pre",
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: "eslint-loader",
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
@@ -38,6 +45,18 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.js?$/,
+        loader: 'babel-loader',
+        include: [
+          path.resolve('js'),
+          path.resolve('node_modules/preact-compat/src')
+        ]
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   }
