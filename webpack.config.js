@@ -8,6 +8,10 @@ module.exports = {
     path: path.join(__dirname, '/public'),
     filename: 'bundle.js'
   },
+  devServer: {
+    publicPath: '/public/',
+    port: 3030
+  },
   resolve: {
     extensions: ['.js', '.json']
   },
