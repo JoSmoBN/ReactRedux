@@ -1,24 +1,36 @@
 import React from 'react'
 
+import ShowCard from './ShowCard'
+
 import preload from '../public/data.json'
 
 const Search = React.createClass({
-
+  getInitialState () {
+    return {
+      searchTerm: ''
+    }
+  },
+  handleSearchTermChange (event) {
+    this.setState({searchTerm: event.target.value})
+  },
   render () {
     return (
       <div className='search'>
-        {preload.shows.map((show) => {
-          return (
-            <div className='show-card'>
-              <img src={`/public/img/posters/${show.poster}`} />
-              <div>
-                <h3>{show.title}</h3>
-                <h4>({show.year})</h4>
-                <p>{show.description}</p>
-              </div>
-            </div>
-          )
-        })}
+        <header>
+          <h1>React Videos</h1>
+          <input type='text' placeholder='Search' value={this.state.searchTerm} onChange={this.handleSearchTermChange} />
+        </header>
+        <div>
+          {preload.shows
+            .filter((show) => {
+              return `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
+            })
+            .map((show) => {
+              return (
+                <ShowCard key={show.imdbID} {...show} />
+              )
+            })}
+        </div>
       </div>
     )
   }

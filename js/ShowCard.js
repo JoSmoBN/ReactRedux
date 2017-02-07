@@ -1,14 +1,23 @@
 import React from 'react'
 
+const { string } = React.PropTypes
+
 const ShowCard = React.createClass({
+  propTypes: {
+    poster: string,
+    title: string,
+    year: string,
+    description: string
+  },
   render () {
+    const { title, year, poster, description } = this.props
     return (
       <div className='show-card'>
-        <img src={`/public/img/posters/${show.poster}`} />
+        <img src={`/public/img/posters/${poster}`} />
         <div>
-          <h3>{show.title}</h3>
-          <h4>({show.year})</h4>
-          <p>{show.description}</p>
+          <h3>{title}</h3>
+          <h4>({year})</h4>
+          <p>{description}</p>
         </div>
       </div>
     )
